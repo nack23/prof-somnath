@@ -1,38 +1,565 @@
-.App {
-  text-align: center;
+body{
+  overflow-x:hidden;
+  margin:0;
+}
+/* ===== HEADER WRAPPER ===== */
+
+.header-wrapper{
+  position:relative;
+  width:100%;
+  height:150px;
+  overflow:hidden;
+
+  /* 🔥 PURPLE-PINK THEME */
+  background:linear-gradient(135deg, #1a1033, #2b0f3a);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* CANVAS BACKGROUND */
+
+.header-wrapper canvas{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ===== MAIN HEADER ===== */
+
+.top-header{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  height:100%;
+  padding:0 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ===== LEFT LOGO (IIT STYLE) ===== */
+
+.left-logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:3px;
+  min-width:220px;
 }
 
-.App-link {
-  color: #61dafb;
+/* logo */
+
+.left-logo img{
+  width:70px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* IIT Delhi */
+
+.left-logo h2{
+  margin:0;
+  color:#ffffff;
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+/* red underline text */
+
+.iit-line{
+  margin:0;
+  font-size:12px;
+  color:#ff4da6;   /* 🔥 pink tone */
+
+  border-top:2px solid #ff4da6;
+  padding-top:3px;
+
+  width:fit-content;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* ===== CENTER TEXT ===== */
+
+.center-text{
+  flex:1;
+  text-align:center;
+}
+
+.center-text h1{
+  margin:0;
+  color:#ffffff;
+  font-size:30px;
+  letter-spacing:1px;
+}
+
+.center-text h3{
+  margin:0;
+  color:#e0d6ff;
+  font-weight:400;
+  font-size:16px;
+}
+
+/* RIGHT SPACE */
+
+.right-space{
+  min-width:220px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+.header-wrapper{
+  height:155px;
+}
+
+/* stack layout */
+
+.top-header{
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+}
+
+/* logo center */
+
+.left-logo{
+  align-items:center;
+}
+
+/* remove right space */
+
+.right-space{
+  display:none;
+}
+
+/* smaller text */
+
+.center-text h1{
+  font-size:20px;
+}
+
+.center-text h3{
+  font-size:13px;
+}
+
+.left-logo img{
+  width:45px;
+}
+
+}
+
+/* ===== NAVBAR ===== */
+
+#navbar{
+  width:100%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background: linear-gradient(
+    90deg,
+    #e6e0ff 0%,
+    #f3f0ff 30%,
+    #fafafa 70%,
+    #ffffff 100%
+  );  /* 🔥 different from green */
+ /* box-shadow:0 4px 20px rgba(0,0,0,0.5); */
+}
+
+/* container */
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:15px 20px;
+}
+
+/* ===== LINKS ===== */
+
+.nav-links{
+  display:flex;
+  width:100%;
+  justify-content:space-evenly;  /* equal spacing */
+  align-items:center;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:black;
+  font-size:15px;
+  font-weight:500;
+  padding:10px 15px;
+  position:relative;
+  transition:0.3s;
+}
+
+/* hover */
+
+.nav-links a:hover{
+  color:#00ffd5;   /* cyan highlight (chemical feel) */
+}
+
+/* underline animation */
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:#00ffd5;
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* ===== MENU ICON ===== */
+
+.menu-icon{
+  display:none;
+  font-size:26px;
+  color:black;
+  cursor:pointer;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+.nav-container{
+  justify-content:center;
+}
+
+.menu-icon{
+  display:block;
+}
+
+/* dropdown */
+
+.nav-links{
+  position:absolute;
+  top:60px;
+  left:0;
+  width:100%;
+
+  flex-direction:column;
+  background: linear-gradient(
+    90deg,
+    #e6e0ff 0%,
+    #f3f0ff 30%,
+    #fafafa 70%,
+    #ffffff 100% 
+  );
+
+  max-height:0;
+  overflow:hidden;
+  transition:0.4s;
+}
+
+.nav-links.active{
+  max-height:350px;
+}
+
+.nav-links a{
+  padding:15px;
+  border-top:1px solid black;
+}
+
+}
+
+
+
+/* 1) hero section */
+/* HERO SECTION */
+/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION ===== */
+
+.hero-section{
+  padding:0;
+}
+
+/* ===== CONTAINER ===== */
+
+.hero-container{
+  margin:auto;
+  position:relative;
+
+  display:grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap:20px;
+  align-items:center;
+
+  padding:50px 400px 50px 180px;
+
+  background: linear-gradient(
+    90deg,
+    #e6e0ff,
+    #f3f0ff,
+    #ffffff
+  );
+
+  box-shadow:0 20px 60px rgba(0,0,0,0.1);
+
+  overflow:hidden;
+}
+
+/* ===== LEFT ===== */
+
+.hero-left h1{
+  font-size:42px;
+  color:#111;
+}
+
+.hero-left span{
+  color:#7c3aed;
+}
+
+.hero-tag{
+  color:#7c3aed;
+  font-weight:600;
+}
+
+.hero-desc{
+  color:#555;
+  margin:15px 0;
+}
+
+/* ===== BUTTONS ===== */
+
+.hero-btns{
+  display:flex;
+  gap:15px;
+}
+
+.btn-primary{
+  background:#7c3aed;
+  color:white;
+  padding:10px 20px;
+  border-radius:25px;
+}
+
+.btn-outline{
+  border:2px solid #7c3aed;
+  color:#7c3aed;
+  padding:10px 20px;
+  border-radius:25px;
+}
+
+/* ===== RIGHT SIDE ===== */
+
+.hero-right{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:320px;
+}
+
+/* ===== CONCENTRIC ===== */
+
+.circle-bg{
+  width:300px;
+  height:300px;
+  border-radius:50%;
+
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  background: radial-gradient(circle, #c4b5fd, #fbcfe8);
+  opacity:0.4;
+}
+
+/* ===== IMAGE ===== */
+
+.hero-img{
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  object-fit:cover;
+  z-index:2;
+}
+
+/* ===== RIGHT ANIMATION ===== */
+
+.left-animation{
+  position:absolute;
+  top:50%;
+  right:-169%;
+  transform:translateY(-50%);
+}
+
+/* ===== RING ===== */
+
+.ring{
+  width:600px;
+  height:600px;
+  border-radius:50%;
+
+background: conic-gradient(
+  from 0deg,
+  #7c3aed,
+  #6366f1,
+  #8b5cf6,
+  #a78bfa,
+  #c4b5fd,
+  #7c3aed
+);
+  animation: rotateRing 8s linear infinite;
+
+  /* 🔥 GLOW ADDED */
+  box-shadow:
+    0 0 80px rgba(167,139,250,0.6),
+    0 0 120px rgba(244,114,182,0.4);
+}
+
+/* ===== CENTER IMAGE ===== */
+
+.ring-img{
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  object-fit:cover;
+
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  z-index:2;
+
+  animation: rotateImage 500s linear infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes rotateRing{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+
+@keyframes rotateImage{
+  from{ transform: translate(-50%,-50%) rotate(0deg); }
+  to{ transform: translate(-50%,-50%) rotate(-360deg); }
+}
+
+/* ===== 📱 MOBILE FIX (IMPORTANT) ===== */
+/* ===== 📱 MOBILE PREMIUM FIX ===== */
+
+@media(max-width:768px){
+
+.hero-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+
+  padding:25px 15px;   /* 🔥 better spacing */
+  gap:20px;
+}
+
+/* ===== IMAGE SECTION ===== */
+
+.hero-right{
+  order:1;
+  width:100%;
+  height:240px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  position:relative;
+}
+
+/* 🔥 concentric improve */
+
+.circle-bg{
+  width:210px;
+  height:210px;
+
+  opacity:0.5;
+
+  filter: blur(1px);   /* 🔥 soft glow */
+}
+
+/* 🔥 image styling */
+
+.hero-img{
+  width:160px;
+  height:160px;
+
+  border-radius:50%;
+  object-fit:cover;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);   /* 🔥 premium */
+}
+
+/* ===== TEXT ===== */
+
+.hero-left{
+  order:2;
+  padding:0 10px;
+}
+
+/* heading adjust */
+
+.hero-left h1{
+  font-size:24px;
+  line-height:1.3;
+}
+
+/* description */
+
+.hero-desc{
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* courses */
+
+.courses ul{
+  padding-left:0;
+  list-style:none;
+}
+
+.courses li{
+  margin:4px 0;
+}
+
+/* ===== BUTTONS ===== */
+
+.hero-btns{
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+}
+
+/* buttons size */
+
+.btn-primary,
+.btn-outline{
+  padding:8px 16px;
+  font-size:14px;
+}
+
+/* ===== HIDE ANIMATION ===== */
+
+.left-animation{
+  display:none;
+}
+
 }
