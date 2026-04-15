@@ -72,7 +72,8 @@ function HeaderBanner() {
         {/* LEFT LOGO (VERTICAL) */}
         <div className="left-logo">
 
-          <img src="/logo.png" alt="logo" />
+          {  /* <img src="/logo.png" alt="logo" /> */}
+          <img src={process.env.PUBLIC_URL + "/logo.png"} alt="logo" />
 
           <h2>IIT Delhi</h2>
 
